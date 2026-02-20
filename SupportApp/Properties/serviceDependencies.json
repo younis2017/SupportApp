@@ -4,9 +4,6 @@
       "type": "mssql",
       "connectionId": "DatabaseOptions:ConnectionString1",
       "dynamicId": null
-    },
-    "apis1": {
-      "type": "apis"
     }
   }
 }
