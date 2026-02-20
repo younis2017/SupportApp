@@ -1,10 +1,53 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+@model SupportApp.Pages.IndexModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    ViewData["Title"] = "Tickets Dashboard";
+    }
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Category</th>
+            <th>Customer</th>
+            <th>Agent</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.Tickets)
+            {
+            <tr>
+                <td>@ticket.Title</td>
+                <td>@ticket.Description</td>
+                <td>@ticket.Status</td>
+                <td>@ticket.Priority</td>
+                <td>@ticket.Category</td>
+                <td>@ticket.CustomerId</td>
+                <td>@ticket.AgentId</td>
+            </tr>
+            }
+    </tbody>
+</table>
+
+<h3>Create New Ticket</h3>
+<form method="post" asp-page-handler="Create">
+    <div class="mb-2">
+        <input asp-for="Title" class="form-control" placeholder="Title" />
+    </div>
+    <div class="mb-2">
+        <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+    </div>
+    <div class="mb-2">
+        <input asp-for="CustomerId" class="form-control" placeholder="Customer ID" />
+    </div>
+    <div class="mb-2">
+        <input asp-for="AgentId" class="form-control" placeholder="Agent ID" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Ticket</button>
+</form>
